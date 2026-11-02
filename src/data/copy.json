@@ -1,23 +1,160 @@
 {
-	"meta": { "title": "Title TK", "description": "Description tk." },
-	"body": [
-		{
-			"section": "intro",
-			"content": [
-				{ "type": "h4", "value": "An h4 element with no attributes" },
-				{
-					"type": "text",
-					"value": "Some random text here, followed by an img tag."
-				},
-				{
-					"type": "img",
-					"value": { "src": "../assets/demo/test.jpg", "alt": "A cat" }
-				},
-				{
-					"type": "Test",
-					"value": { "label": "I’m a custom component!", "value": "50" }
-				}
-			]
-		}
-	]
+  "title": "Donate your accent",
+  "description": "Help The Pudding create an accent quiz",
+  "url": "https://pudding.cool/projects/donate-your-accent",
+  "places": [
+    {
+      "id": "st-louis",
+      "name": "St. Louis",
+      "demonym": "St. Louisans",
+      "sentence": "Her beer is right there."
+    },
+    {
+      "id": "minnesota",
+      "name": "Minnesota",
+      "demonym": "Minnesotans",
+      "sentence": "Let’s play in the snow today."
+    },
+    {
+      "id": "socal",
+      "name": "SoCal",
+      "demonym": "Southern Californians",
+      "sentence": "Turn the lights down low."
+    },
+    {
+      "id": "new-orleans",
+      "name": "New Orleans",
+      "demonym": "New Orleanians",
+      "sentence": "Tk"
+    }
+  ],
+  "choose": {
+    "hed": "Donate your accent!",
+    "label": "Which place?",
+    "placeholder": "Choose a place"
+  },
+  "intro": {
+    "hed": "Donate your {name} accent!",
+    "dek": "We're creating an accent quiz and we need your help to showcase the unique ways {demonym} pronounce words."
+  },
+  "record": {
+    "prompt": "Record yourself reading the following sentence:",
+    "start": "Start recording",
+    "stop": "Finish",
+    "recording": "Recording…",
+    "review": "Listen back to make sure it sounds clear.",
+    "retry": "Try again",
+    "tooShort": "That was too short. Try again and read the whole sentence.",
+    "micDenied": "We need permission to use your microphone. Allow it in your browser settings, then try again.",
+    "micMissing": "We couldn’t find a microphone. Plug one in or try another device.",
+    "micBusy": "Your microphone is being used by another app. Close it and try again.",
+    "micError": "We couldn’t access your microphone. Check your browser permissions and try again.",
+    "unsupported": "Your browser can’t record audio. Try the latest Chrome, Safari, or Firefox.",
+    "inApp": "Recording may not work in this app’s browser. If it doesn’t, open this page in Safari or Chrome."
+  },
+  "questions": {
+    "hed": "Some final questions",
+    "email": {
+      "label": "If we want to follow up for a better recording, what email can we reach you at?",
+      "hint": "We’ll only use this to contact you about your recording.",
+      "placeholder": "you@example.com"
+    },
+    "demographics": {
+      "hed": "Optional: tell us a bit about yourself",
+      "hint": "This helps us make sure the quiz represents a range of voices."
+    },
+    "race": {
+      "label": "Race or ethnicity (select all that apply)",
+      "options": [
+        {
+          "value": "asian",
+          "label": "Asian"
+        },
+        {
+          "value": "black",
+          "label": "Black or African American"
+        },
+        {
+          "value": "hispanic",
+          "label": "Hispanic or Latino"
+        },
+        {
+          "value": "mena",
+          "label": "Middle Eastern or North African"
+        },
+        {
+          "value": "native",
+          "label": "American Indian or Alaska Native"
+        },
+        {
+          "value": "pacific",
+          "label": "Native Hawaiian or Pacific Islander"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "other",
+          "label": "Another race or ethnicity"
+        },
+        {
+          "value": "no_answer",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    "age": {
+      "label": "Age",
+      "placeholder": "Select an age range",
+      "options": [
+        {
+          "value": "under_18",
+          "label": "Under 18"
+        },
+        {
+          "value": "18_24",
+          "label": "18–24"
+        },
+        {
+          "value": "25_34",
+          "label": "25–34"
+        },
+        {
+          "value": "35_44",
+          "label": "35–44"
+        },
+        {
+          "value": "45_54",
+          "label": "45–54"
+        },
+        {
+          "value": "55_64",
+          "label": "55–64"
+        },
+        {
+          "value": "65_plus",
+          "label": "65+"
+        },
+        {
+          "value": "no_answer",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    "consent": {
+      "label": "I agree that The Pudding may use my recording in an accent quiz."
+    }
+  },
+  "submit": {
+    "button": "Submit",
+    "submitting": "Submitting…",
+    "needsRecording": "Record the sentence above to submit.",
+    "needsConsent": "Check the box above to submit.",
+    "error": "Something went wrong saving your recording. Please try again."
+  },
+  "thanks": {
+    "hed": "Thank you!",
+    "text": "Your accent is on its way to us. Keep an eye out for the quiz."
+  }
 }

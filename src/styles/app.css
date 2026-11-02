@@ -6,6 +6,8 @@
 
 /* colors defined in variables.css */
 :root {
+	color-scheme: dark;
+
 	/* font */
 	--font-sans: "Atlas Grotesk", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 	--font-serif: "Tiempos Text", Iowan Old Style, Times New Roman, Times, serif;
@@ -27,22 +29,24 @@
 	--radius-md: 0.5rem;
 	--radius-lg: 1rem;
 	
-	--color-bg: var(--color-white);
-	--color-fg: var(--color-gray-900);
-	--color-fg-light: var(--color-gray-500);
-	--color-primary: var(--color-black);
-	--color-link: var(--color-black);
-	--color-link-hover: var(--color-black);
-	--color-focus: var(--color-gray-500);
+	--color-bg: var(--color-black);
+	--color-fg: var(--color-white);
+	--color-fg-light: var(--color-gray-400);
+	--color-primary: var(--color-yellow);
+	--color-link: var(--color-yellow);
+	--color-link-hover: var(--color-white);
+	--color-focus: var(--color-yellow);
 	--color-mark: var(--color-yellow);
-	--color-selection: var(--color-gray-300);
-	--color-border: var(--color-gray-300);
-	--color-button-fg-primary: var(--color-white);
-	--color-button-bg-primary: var(--color-gray-900);
+	--color-selection: var(--color-gray-800);
+	--color-border: var(--color-gray-700);
+	--color-surface: var(--color-gray-950);
+	--color-error: var(--color-red);
+	--color-button-fg-primary: var(--color-black);
+	--color-button-bg-primary: var(--color-yellow);
 	--color-button-fg-secondary: var(--color-white);
-	--color-button-bg-secondary: var(--color-gray-500);
-	--color-input-bg: var(--color-gray-50);
-	--color-input-fg: var(--color-gray-900);
+	--color-button-bg-secondary: var(--color-gray-700);
+	--color-input-bg: var(--color-gray-900);
+	--color-input-fg: var(--color-white);
 	--color-placeholder: var(--color-gray-500);
 
 	/* "1" second duration */
