@@ -7,6 +7,8 @@
 	import Checkbox from "$components/ui/Checkbox.svelte";
 	import Select from "$components/ui/Select.svelte";
 	import fillCopy from "$utils/fill.js";
+	import { places } from "$utils/places.js";
+	import storage from "$utils/localStorage.js";
 	import { uploadAudio, saveRow } from "$utils/supabase.js";
 
 	// place: one of copy.places, or undefined on / (shows the place picker)
@@ -15,7 +17,7 @@
 	const copy = getContext("copy");
 	const { choose, intro, record, questions, submit, thanks } = copy;
 
-	const placeOptions = copy.places.map((d) => ({ value: d.id, label: d.name }));
+	const placeOptions = places.map((d) => ({ value: d.id, label: d.name }));
 	const fill = (str) => fillCopy(str, place);
 
 	// split the hed at {name} so the place always starts a new line
@@ -32,9 +34,23 @@
 	let email = $state("");
 	let race = $state([]);
 	let age = $state(undefined);
+	let hometown = $state("");
 	let consent = $state(false);
 	let error = $state("");
-	let status = $state("idle"); // "idle" | "submitting" | "done"
+	let status = $state("idle"); // "idle" | "submitting" | "done" | "already"
+
+	// one submission per place per browser: remember which places this browser has sent
+	const SUBMITTED_KEY = "accent-donate-submitted";
+	const submittedPlaces = () => storage.get(SUBMITTED_KEY) ?? [];
+
+	$effect(() => {
+		if (place && submittedPlaces().includes(place.id)) status = "already";
+	});
+
+	function markSubmitted(id) {
+		const ids = submittedPlaces();
+		if (!ids.includes(id)) storage.set(SUBMITTED_KEY, [...ids, id]);
+	}
 
 	function toggleRace(value, checked) {
 		race = checked ? [...race, value] : race.filter((d) => d !== value);
@@ -71,8 +87,10 @@
 				email: email.trim() || null,
 				race,
 				age: age || null,
+				hometown: hometown.trim() || null,
 				consent
 			});
+			markSubmitted(place.id);
 			status = "done";
 			window.scrollTo({ top: 0 });
 		} catch (err) {
@@ -112,6 +130,11 @@
 				<h1>{fill(thanks.hed)}</h1>
 				<p class="dek">{fill(thanks.text)}</p>
 			</header>
+		{:else if status === "already"}
+			<header class="intro">
+				<h1>{fill(thanks.hed)}</h1>
+				<p class="dek">{fill(thanks.already)}</p>
+			</header>
 		{:else}
 			<header class="intro">
 				<h1>
@@ -123,7 +146,13 @@
 						)}
 					{/if}
 				</h1>
+				{#if place.description}
+					<p class="description">{place.description}</p>
+				{/if}
 				<p class="dek">{fill(intro.dek)}</p>
+				{#if intro.merch}
+					<p class="dek">{@html fill(intro.merch)}</p>
+				{/if}
 			</header>
 
 			<section class="card">
@@ -175,6 +204,17 @@
 					/>
 				</div>
 
+				<div class="field">
+					<label for="hometown">{questions.hometown.label}</label>
+					<input
+						id="hometown"
+						type="text"
+						maxlength="200"
+						placeholder={questions.hometown.placeholder}
+						bind:value={hometown}
+					/>
+				</div>
+
 				<div class="field consent">
 					<Checkbox
 						labelText={questions.consent.label}
@@ -220,12 +260,25 @@
 		white-space: nowrap;
 	}
 
+	.description {
+		font-family: var(--font-sans);
+		font-size: var(--14px);
+		color: var(--color-white);
+		margin: 1rem auto 0;
+		max-width: 30rem;
+		text-wrap: pretty;
+	}
+
 	.dek {
 		font-size: var(--20px);
 		color: var(--color-fg-light);
 		margin: 1.25rem auto 0;
-		max-width: 32rem;
+		max-width: 36rem;
 		text-wrap: pretty;
+	}
+
+	.dek + .dek {
+		margin-top: 0.75rem;
 	}
 
 	.card {
@@ -314,16 +367,19 @@
 		color: var(--color-fg-light);
 	}
 
-	input[type="email"] {
+	input[type="email"],
+	input[type="text"] {
 		padding: 0.75rem;
 		outline: 1px solid var(--color-border);
 	}
 
-	input[type="email"]::placeholder {
+	input[type="email"]::placeholder,
+	input[type="text"]::placeholder {
 		color: var(--color-placeholder);
 	}
 
-	input[type="email"]:focus-visible {
+	input[type="email"]:focus-visible,
+	input[type="text"]:focus-visible {
 		outline: 2px solid var(--color-focus);
 		outline-offset: 0;
 	}

@@ -25,7 +25,19 @@
       "id": "new-orleans",
       "name": "New Orleans",
       "demonym": "New Orleanians",
-      "sentence": "Tk"
+      "sentence": "I’d like a hot coffee."
+    },
+    {
+      "id": "hawaii",
+      "name": "Hawaii",
+      "demonym": "Hawaiians",
+      "sentence": "I’ll go get my phone."
+    },
+    {
+      "id": "inland-north",
+      "name": "Inland North",
+      "demonym": "Inland Northerners",
+      "description": "The Inland North stretches along the Great Lakes from upstate New York through Cleveland and Detroit to Chicago and Milwaukee."
     }
   ],
   "choose": {
@@ -35,7 +47,8 @@
   },
   "intro": {
     "hed": "Donate your {name} accent!",
-    "dek": "We're creating an accent quiz and we need your help to showcase the unique ways {demonym} pronounce words."
+    "dek": "We're creating an accent quiz and we need your help to showcase the unique ways {demonym} pronounce words.",
+    "merch": "If your recording is selected to use in the quiz, we’ll send you a piece of free <a href=https://the-pudding.printify.me/ target=_blank>merch</a>!"
   },
   "record": {
     "prompt": "Record yourself reading the following sentence:",
@@ -142,6 +155,10 @@
         }
       ]
     },
+    "hometown": {
+      "label": "Hometown",
+      "placeholder": "e.g. Duluth, Minnesota"
+    },
     "consent": {
       "label": "I agree that The Pudding may use my recording in an accent quiz."
     }
@@ -155,6 +172,7 @@
   },
   "thanks": {
     "hed": "Thank you!",
-    "text": "Your accent is on its way to us. Keep an eye out for the quiz."
+    "text": "Your accent is on its way to us. Keep an eye out for the quiz.",
+    "already": "You’ve already donated your {name} accent. Thank you!"
   }
 }

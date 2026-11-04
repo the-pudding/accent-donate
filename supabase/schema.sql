@@ -12,6 +12,7 @@ create table public.accent_submissions (
 	email text check (char_length(email) <= 320),
 	race text[] not null default '{}' check (cardinality(race) <= 20),
 	age text check (char_length(age) <= 50),
+	hometown text check (char_length(hometown) <= 200),
 	consent boolean not null check (consent),
 
 	-- for us, while reviewing in the dashboard
@@ -40,3 +41,11 @@ create policy "Anyone can upload an accent recording"
 	for insert
 	to anon
 	with check (bucket_id = 'accent-recordings');
+
+
+-- MIGRATIONS
+-- if the table already exists, run these instead of recreating it
+
+-- 2026-11-04: add hometown
+alter table public.accent_submissions
+	add column if not exists hometown text check (char_length(hometown) <= 200);
